@@ -1,0 +1,30 @@
+
+        String userName = request.getParameter("userName");
+        String password = request.getParameter("password");
+
+        response.setContentType("text/html");
+        PrintWriter out = response.getWriter();
+
+        System.out.println("alo");
+
+        includeHeader(request, response);
+
+        UserDao userDao = new UserDao();
+        Users user = userDao.getUser(userName);
+        System.out.println("alo");
+
+        if (user != null && user.getPassword().equals(password)) {
+            System.out.println("alo");
+            request.getSession().setAttribute("userName", userName);
+            request.getSession().setAttribute("password", password);
+            out.println("Login successful!<br>");
+
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/Login");
+            dispatcher.include(request, response);
+        }
+
+        // else{
+        //     out.println("<span style='color:red;'>Login Unauthorized!</span><br>");
+        //     request.getRequestDispatcher("index.html").include(request, response);
+        // }
+        includeFooter(request, response);

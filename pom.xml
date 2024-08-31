@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <!-- The groupId uniquely identifies your project across all projects -->
+  <groupId>com.example</groupId>
+
+  <!-- The artifactId is the name of the jar without version -->
+  <artifactId>demo</artifactId>
+
+  <!-- Version of the project -->
+  <version>1</version>
+
+  <!-- Packaging type: 'war' indicates that this project is a Web Application Archive -->
+  <packaging>war</packaging>
+
+  <!-- Project name -->
+  <name>demo Maven Webapp</name>
+
+  <!-- Project URL -->
+  <url>http://www.example.com</url>
+
+  <!-- Define common properties used in plugins and dependencies -->
+  <properties>
+    <!-- Encoding for source files -->
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+    <!-- Java compiler version -->
+    <maven.compiler.source>17</maven.compiler.source>
+    <maven.compiler.target>17</maven.compiler.target>
+  </properties>
+
+  <dependencies>
+
+    <!-- Jakarta EE API: Provided scope means the dependency is required at compile time but is provided by the runtime -->
+    <dependency>
+      <groupId>jakarta.platform</groupId>
+      <artifactId>jakarta.jakartaee-api</artifactId>
+      <version>9.1.0</version>
+      <scope>provided</scope>
+    </dependency>
+
+    <!-- Hibernate ORM: Used for ORM (Object-Relational Mapping) to manage data between Java objects and relational databases -->
+    <dependency>
+      <groupId>org.hibernate.orm</groupId>
+      <artifactId>hibernate-core</artifactId>
+      <version>6.6.0.Final</version>
+    </dependency>
+
+    <!-- MySQL Connector: JDBC driver for MySQL, used to connect Java applications to a MySQL database -->
+    <dependency>
+      <groupId>com.mysql</groupId>
+      <artifactId>mysql-connector-j</artifactId>
+      <version>8.2.0</version>
+    </dependency>
+
+    <!-- Jakarta Persistence API: Provides the JPA interfaces and annotations -->
+    <dependency>
+      <groupId>jakarta.persistence</groupId>
+      <artifactId>jakarta.persistence-api</artifactId>
+      <version>3.2.0</version>
+    </dependency>
+
+    <!-- Servlet API: Provides the necessary classes to create servlets, used for HTTP requests/responses -->
+    <dependency>
+      <groupId>jakarta.servlet</groupId>
+      <artifactId>jakarta.servlet-api</artifactId>
+      <version>5.0.0</version>
+      <scope>provided</scope>
+    </dependency>
+
+  </dependencies>
+
+  <build>
+    <finalName>demo</finalName>
+    
+    <pluginManagement>
+      <plugins>
+        
+        <!-- Maven Compiler Plugin: Used to compile the Java source code -->
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <version>3.8.1</version>
+        </plugin>
+
+        <!-- Tomcat Maven Plugin: Used to deploy the project to a Tomcat server -->
+        <plugin>
+          <groupId>org.apache.tomcat.maven</groupId>
+          <artifactId>tomcat7-maven-plugin</artifactId>
+          <version>2.2</version>
+          <configuration>
+            <username>admin</username>
+            <password>admin</password>
+            <url>http://localhost:8080/manager/text</url>
+            <path>/myApp</path>
+          </configuration>
+        </plugin>
+
+        <!-- Maven WAR Plugin: Used to build the web application into a WAR file -->
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-war-plugin</artifactId>
+          <version>3.3.0</version>
+          <configuration>
+            <failOnMissingWebXml>false</failOnMissingWebXml>
+          </configuration>
+        </plugin>
+
+        <!-- Maven Clean Plugin: Used to clean the target directory before building the project -->
+        <plugin>
+          <artifactId>maven-clean-plugin</artifactId>
+          <version>3.1.0</version>
+        </plugin>
+
+        <!-- Maven Resources Plugin: Used to copy resources from src/main/resources to target/classes -->
+        <plugin>
+          <artifactId>maven-resources-plugin</artifactId>
+          <version>3.0.2</version>
+        </plugin>
+
+        <!-- Maven Surefire Plugin: Used to run unit tests -->
+        <plugin>
+          <artifactId>maven-surefire-plugin</artifactId>
+          <version>2.22.1</version>
+        </plugin>
+
+        <!-- Maven Install Plugin: Used to install the built artifacts in the local repository -->
+        <plugin>
+          <artifactId>maven-install-plugin</artifactId>
+          <version>2.5.2</version>
+        </plugin>
+
+        <!-- Maven Deploy Plugin: Used to deploy the built artifacts to a remote repository -->
+        <plugin>
+          <artifactId>maven-deploy-plugin</artifactId>
+          <version>2.8.2</version>
+        </plugin>
+        
+      </plugins>
+    </pluginManagement>
+  </build>
+</project>
