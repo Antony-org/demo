@@ -37,8 +37,8 @@ public class SQLQueryServlet extends HttpServlet {
         out.println("<input type='submit' value='Execute Query'>");
         out.println("</form>");
         out.println("</body>");
+        
 
-        out.close();
     }
 
     @Override
@@ -59,7 +59,6 @@ public class SQLQueryServlet extends HttpServlet {
         
         try {
             
-            // Determine if the query is JPQL or Native SQL
                 q = em.createNativeQuery(query, Users.class);
                 if(q != null){
                 List<Users> result = q.getResultList();

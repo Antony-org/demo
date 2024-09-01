@@ -8,16 +8,15 @@ import jakarta.servlet.FilterConfig;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
-import jakarta.servlet.annotation.WebFilter;
 
-@WebFilter("/*")
 public class FooterFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
             throws IOException, ServletException {
+                
         chain.doFilter(request, response);
-        response.getWriter().println("<footer>Footer Section</footer>");
+        response.getWriter().println("<h1>Footer Section from filter</h1>");
     }
 
     @Override

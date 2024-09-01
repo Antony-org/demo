@@ -1,13 +1,13 @@
 package example.db;
 
+import java.util.List;
+
 import example.model.Users;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Root;
-
-import java.util.List;
 
 public class UserDao {
 
@@ -30,6 +30,7 @@ public class UserDao {
             em.close();
         }
     }
+    
     public List<Users> searchUsers(String keyword) {
         EntityManager em = HibernateUtil.getEntityManager();
         try {

@@ -34,6 +34,16 @@
     <url-pattern>/*</url-pattern>
   </filter-mapping>
 
+  <filter>
+    <filter-name>LoggingFilter</filter-name>
+    <filter-class>example.filter.LoggingFilter</filter-class>
+  </filter>
+
+  <filter-mapping>
+    <filter-name>LoggingFilter</filter-name>
+    <url-pattern>/search</url-pattern>
+  </filter-mapping>
+
 
   <servlet>
     <servlet-name>Testing</servlet-name>
