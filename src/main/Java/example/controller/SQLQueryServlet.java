@@ -37,7 +37,6 @@ public class SQLQueryServlet extends HttpServlet {
         out.println("<input type='submit' value='Execute Query'>");
         out.println("</form>");
         out.println("</body>");
-        out.println("</html>");
 
         out.close();
     }

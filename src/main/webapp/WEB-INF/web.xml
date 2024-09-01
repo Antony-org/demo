@@ -86,26 +86,6 @@
     <url-pattern>/Login</url-pattern>
 </servlet-mapping>
 
-  <!-- Header Servlet -->
-  <servlet>
-    <servlet-name>HeaderServlet</servlet-name>
-    <servlet-class>example.controller.HeaderServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>HeaderServlet</servlet-name>
-    <url-pattern>/header</url-pattern>
-  </servlet-mapping>
-
-  <!-- Footer Servlet -->
-  <servlet>
-    <servlet-name>FooterServlet</servlet-name>
-    <servlet-class>example.controller.FooterServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>FooterServlet</servlet-name>
-    <url-pattern>/footer</url-pattern>
-  </servlet-mapping>
-
   <servlet>
     <servlet-name>CookieTestServlet</servlet-name>
     <servlet-class>example.controller.CookieTestServlet</servlet-class>

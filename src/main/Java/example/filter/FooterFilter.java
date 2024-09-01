@@ -1,5 +1,7 @@
 package example.filter;
 
+import java.io.IOException;
+
 import jakarta.servlet.Filter;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.FilterConfig;
@@ -8,8 +10,6 @@ import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
 import jakarta.servlet.annotation.WebFilter;
 
-import java.io.IOException;
-
 @WebFilter("/*")
 public class FooterFilter implements Filter {
 
@@ -17,7 +17,7 @@ public class FooterFilter implements Filter {
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
             throws IOException, ServletException {
         chain.doFilter(request, response);
-        response.getWriter().println("<footer>Footer Section from filter</footer>");
+        response.getWriter().println("<footer>Footer Section</footer>");
     }
 
     @Override
