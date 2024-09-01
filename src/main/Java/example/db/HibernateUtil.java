@@ -20,6 +20,10 @@ public class HibernateUtil {
         return emf.createEntityManager();
     }
 
+    public static EntityManagerFactory getEntityManagerFactory() {
+        return emf;
+    }
+
     public static void close() {
         if (emf != null) {
             emf.close();

@@ -4,8 +4,9 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
-import example.db.HibernateUtil;
+import example.model.Users;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Query;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -13,7 +14,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-@WebServlet("/SQLQueryServlet")
+@WebServlet("/sql")
 public class SQLQueryServlet extends HttpServlet {
 
     @Override
@@ -30,7 +31,7 @@ public class SQLQueryServlet extends HttpServlet {
         out.println("</head>");
         out.println("<body>");
         out.println("<h2>SQL Query Tool</h2>");
-        out.println("<form action='SQLQueryServlet' method='post'>");
+        out.println("<form action='sql' method='post'>");
         out.println("<label for='sql'>Enter SQL Query:</label><br>");
         out.println("<textarea id='sql' name='sql' rows='4' cols='50' placeholder='SELECT * FROM Users;'></textarea><br><br>");
         out.println("<input type='submit' value='Execute Query'>");
@@ -53,21 +54,22 @@ public class SQLQueryServlet extends HttpServlet {
             return;
         }
 
-        EntityManager em = HibernateUtil.getEntityManager();
+        EntityManagerFactory emf = (EntityManagerFactory) getServletContext().getAttribute("emf");
+        EntityManager em = emf.createEntityManager();
         Query q = null;
         
         try {
             
             // Determine if the query is JPQL or Native SQL
-                q = em.createNativeQuery(query);
+                q = em.createNativeQuery(query, Users.class);
                 if(q != null){
-                List<?> result = q.getResultList();
+                List<Users> result = q.getResultList();
 
                 out.println("<h3>Query:</h3>");
                 out.println("<pre>" + query + "</pre>");
                 out.println("<h3>Result:</h3>");
-                for (Object o : result) {
-                    out.println(o.toString() + "<br>");
+                for (Users u : result) {
+                    out.println( u.getUserName()+ "<br>");
                 }
             } else {
                 out.println("<h3>Invalid Query:</h3>");
