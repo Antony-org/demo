@@ -1,10 +1,10 @@
 example/controller/servlet1.class
 example/controller/ImageServlet.class
+example/utils/RandomNumberGenerator.class
 example/db/HibernateUtil.class
 example/controller/Login.class
-example/filter/FooterFilter.class
+example/filter/LoggingFilter.class
 example/model/Users.class
-example/filter/HeaderFilter.class
 example/controller/BaseServlet.class
 example/controller/SearchServlet.class
 example/controller/SQLQueryServlet.class

@@ -65,10 +65,10 @@ public class SearchServlet extends HttpServlet {
     }
 
     private void includeHeader(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("/WEB-INF/header.html").include(request, response);
+        request.getRequestDispatcher("/jsp/header.jsp").include(request, response);
     }
 
     private void includeFooter(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("/WEB-INF/footer.html").include(request, response);
+        request.getRequestDispatcher("/jsp/footer.jsp").include(request, response);
     }
 }

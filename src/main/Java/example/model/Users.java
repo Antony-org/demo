@@ -1,14 +1,13 @@
 package example.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "users") // Ensure this matches your database table name
 public class Users {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id; // or whatever your primary key type is
 
     private String userName;
@@ -55,5 +54,11 @@ public class Users {
                ", userName='" + userName + '\'' +
                ", email='" + email + '\'' +
                '}';
+    }
+
+    public Users() {}
+    public Users(String userName, String password) {
+        this.userName = userName;
+        this.password = password;
     }
 }

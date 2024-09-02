@@ -12,13 +12,13 @@ public abstract class BaseServlet extends HttpServlet {
 
     protected void includeHeader(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        RequestDispatcher headerDispatcher = request.getRequestDispatcher("/WEB-INF/header.html");
+        RequestDispatcher headerDispatcher = request.getRequestDispatcher("/jsp/header.jsp");
         headerDispatcher.include(request, response);
     }
 
     protected void includeFooter(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        RequestDispatcher footerDispatcher = request.getRequestDispatcher("/WEB-INF/footer.html");
+        RequestDispatcher footerDispatcher = request.getRequestDispatcher("/jsp/footer.jsp");
         footerDispatcher.include(request, response);
     }
 

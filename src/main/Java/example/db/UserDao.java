@@ -1,9 +1,11 @@
 package example.db;
 
+import java.sql.SQLOutput;
 import java.util.List;
 
 import example.model.Users;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityTransaction;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
@@ -28,6 +30,41 @@ public class UserDao {
             return null;
         } finally {
             em.close();
+        }
+    }
+
+    public void addUser(Users user) {
+        EntityManager em = null;
+        EntityTransaction tx = null;
+
+        try {
+            // Get an EntityManager instance
+            em = HibernateUtil.getEntityManager();
+            System.out.println("inside try");
+            // Start a transaction
+            tx = em.getTransaction();
+            tx.begin();
+            System.out.println("inside transaction");
+
+            // Persist the user entity
+            em.persist(user);
+            System.out.println("persisted");
+
+            // Commit the transaction
+            tx.commit();
+            System.out.println("commited");
+
+        } catch (Exception e) {
+            // Rollback the transaction in case of an error
+            if (tx != null && tx.isActive()) {
+                tx.rollback();
+            }
+            e.printStackTrace(); // Log this exception in real applications
+        } finally {
+            // Close the EntityManager
+            if (em != null) {
+                em.close();
+            }
         }
     }
     

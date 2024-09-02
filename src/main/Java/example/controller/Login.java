@@ -34,7 +34,7 @@ public class Login extends BaseServlet {
         }
         else{
             out.println("<span style='color:red;'>Login Unauthorized!</span><br>");
-            request.getRequestDispatcher("index.html").include(request, response);
+            request.getRequestDispatcher("index.jsp").include(request, response);
         }
     }
 

@@ -12,6 +12,7 @@
 /Users/tonysameh/ITI/Servlets/demo/src/main/java/example/filter/HeaderFilter.java
 /Users/tonysameh/ITI/Servlets/demo/src/main/java/example/controller/SQLQueryServlet.java
 /Users/tonysameh/ITI/Servlets/demo/src/main/java/example/model/Users.java
+/Users/tonysameh/ITI/Servlets/demo/src/main/java/example/utils/RandomNumberGenerator.java
 /Users/tonysameh/ITI/Servlets/demo/src/main/java/example/Main.java
 /Users/tonysameh/ITI/Servlets/demo/src/main/java/example/controller/CookieTestServlet.java
 /Users/tonysameh/ITI/Servlets/demo/src/main/java/example/controller/SearchServlet.java
