@@ -43,6 +43,12 @@
       <scope>provided</scope>
     </dependency>
 
+    <dependency>
+      <groupId>jakarta.servlet.jsp.jstl</groupId>
+      <artifactId>jakarta.servlet.jsp.jstl-api</artifactId>
+      <version>3.0.2</version>
+    </dependency>
+
     <!-- Hibernate ORM: Used for ORM (Object-Relational Mapping) to manage data between Java objects and relational databases -->
     <dependency>
       <groupId>org.hibernate.orm</groupId>

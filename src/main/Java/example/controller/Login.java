@@ -17,6 +17,9 @@ public class Login extends BaseServlet {
         String userName = request.getParameter("userName");
         String password = request.getParameter("password");
 
+        request.getSession().setAttribute("userName", userName);
+        request.getSession().setAttribute("password", password);
+
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
 
@@ -30,7 +33,7 @@ public class Login extends BaseServlet {
 
             out.println("Login successful!<br>");
             
-            response.sendRedirect(request.getContextPath() + "/search");
+            response.sendRedirect(request.getContextPath() + "/jsp/welcome.jsp");
         }
         else{
             out.println("<span style='color:red;'>Login Unauthorized!</span><br>");
@@ -38,19 +41,4 @@ public class Login extends BaseServlet {
         }
     }
 
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException {
-        response.setContentType("text/html");
-        PrintWriter out = response.getWriter();
-
-        includeHeader(request, response);
-
-        String userName = (String) request.getSession().getAttribute("userName");
-        String password = (String) request.getSession().getAttribute("password");
-        
-        out.println("User ID: " + userName + "<br>");
-        out.println("Password: " + password + "<br>");
-        
-        includeFooter(request, response);
-    }
 }
