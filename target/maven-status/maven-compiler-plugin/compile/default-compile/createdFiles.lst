@@ -9,7 +9,6 @@ example/controller/BaseServlet.class
 example/controller/SearchServlet.class
 example/controller/SQLQueryServlet.class
 example/db/UserDao.class
-example/controller/MyServlet.class
 example/controller/CookieTestServlet.class
 example/Main.class
 example/listener/HibernateListener.class
