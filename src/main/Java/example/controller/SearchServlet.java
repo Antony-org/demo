@@ -11,6 +11,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 @WebServlet("/search")
 public class SearchServlet extends HttpServlet {
@@ -18,7 +19,7 @@ public class SearchServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String keyword = request.getParameter("keyword");
-
+        HttpSession session = request.getSession();
         // Set the response content type
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
@@ -45,20 +46,22 @@ public class SearchServlet extends HttpServlet {
         UserDao userDao = new UserDao();
         List<Users> users = userDao.searchUsers(keyword);
 
-        // Display search results
-        out.println("<h1>Search Results</h1>");
-        if (users.isEmpty()) {
-            out.println("<p>No users found.</p>");
-        } else {
-            out.println("<table border='1'>");
-            out.println("<tr><th>First Name</th><th>Last Name</th><th>Username</th><th>Password</th></tr>");
-            for (Users user : users) {
-                out.println("<tr>");
-                out.println("<td>" + user.getUserName() + "</td>");
-                out.println("</tr>");
-            }
-            out.println("</table>");
-        }
+        session.setAttribute("users", users);
+        response.sendRedirect("jsp/display.jsp");
+//        // Display search results
+//        out.println("<h1>Search Results</h1>");
+//        if (users.isEmpty()) {
+//            out.println("<p>No users found.</p>");
+//        } else {
+//            out.println("<table border='1'>");
+//            out.println("<tr><th>First Name</th><th>Last Name</th><th>Username</th><th>Password</th></tr>");
+//            for (Users user : users) {
+//                out.println("<tr>");
+//                out.println("<td>" + user.getUserName() + "</td>");
+//                out.println("</tr>");
+//            }
+//            out.println("</table>");
+//        }
 
         // Include the footer
         includeFooter(request, response);

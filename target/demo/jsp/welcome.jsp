@@ -20,7 +20,7 @@
     userDao.addUser(new Users("user2", "pass2"));
     userDao.addUser(new Users("user3", "pass3"));
 
-    List<Users> userList = userDao.getAllUsers(); // Assuming getAllUsers() returns a list of users
+    List<Users> userList = userDao.getAllUsers("username");
 
     session.setAttribute("userList", userList);
 %>

@@ -8,7 +8,7 @@
 </head>
 <body>
 <ul>
-    <c:forEach var="user" items="${userList}">
+    <c:forEach var="user" items="${users}">
         <li><c:out value="${user.userName}"/></li>
     </c:forEach>
 </ul>

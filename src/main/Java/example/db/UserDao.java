@@ -95,12 +95,13 @@ public class UserDao {
 
     }
 
-    public List<Users> getAllUsers() {
+    public List<Users> getAllUsers(String userName) {
         EntityManager em = HibernateUtil.getEntityManager();
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<Users> cq = cb.createQuery(Users.class);
         Root<Users> userRoot = cq.from(Users.class);
         cq.select(userRoot);
+        cq.where(cb.equal(userRoot.get("userName"), userName));
         return em.createQuery(cq).getResultList();
     }
 }
