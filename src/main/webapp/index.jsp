@@ -2,42 +2,27 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Combined AJAX Example</title>
-    <link rel="stylesheet" type="text/css" href="styles/style.css">
-    <script src="js/script.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebSocket Login</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
-<body onload="setInterval('updateSchedule()', '3000')">
+<body>
+<h2>Login to WebSocket Chat</h2>
+<form id="loginForm">
+    <input type="text" id="username" placeholder="Enter your username" required />
+    <button type="submit">Login</button>
+</form>
 
-<div id="ajaxButtonSection">
-    <h2>1st Assignment: AJAX Button</h2>
-    <button onclick="submitForm()">Submit</button>
-    <div id="response"></div>
-</div>
-
-<div id="validationForm">
-    <h2>2nd Assignment: AJAX Form Validation</h2>
-    <form onsubmit="return false;">
-        Enter Your Name: <input type="text" id="userName" onblur="validateName()"><span id="nameStatus"></span><br>
-        Enter Your Password: <input type="password" id="password" disabled><br>
-        <input type="submit" value="Submit">
-    </form>
-</div>
-
-<div id="scheduleTable">
-    <h2>3rd Assignment: Dynamic Schedule Table</h2>
-    <table border="1">
-        <thead>
-        <tr>
-            <th>Activity Name</th>
-            <th>Location</th>
-            <th>Time</th>
-        </tr>
-        </thead>
-        <tbody id="schedule">
-        <!-- get table.jsp -->
-        </tbody>
-    </table>
-</div>
-
+<script>
+    $(document).ready(function() {
+        $('#loginForm').submit(function(event) {
+            event.preventDefault();
+            var username = $('#username').val();
+            if(username) {
+                window.location.href = 'jsp/chat.jsp?username=' + encodeURIComponent(username);
+            }
+        });
+    });
+</script>
 </body>
 </html>

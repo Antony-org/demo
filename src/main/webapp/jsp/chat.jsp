@@ -1,4 +1,3 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,45 +8,73 @@
 </head>
 <body>
 <h2>WebSocket Chat</h2>
-<div id="chatWindow">
-    <div id="messages"></div>
-</div>
-<input type="text" id="messageInput" placeholder="Type your message here..." />
+
+<!-- Connection Status -->
+<div id="connectionStatus">Disconnected</div>
+
+<!-- Chat Window -->
+<div id="chatWindow" style="border: 1px solid #000; width: 300px; height: 200px; overflow-y: scroll;"></div>
+
+<!-- Message Input -->
+<input type="text" id="messageInput" placeholder="Type your message here..." style="width: 250px;" />
 <button id="sendButton">Send</button>
 <button id="logoutButton">Logout</button>
 
 <script>
-    var websocket;
     $(document).ready(function() {
-        var username = decodeURIComponent(window.location.search.split('=')[1]);
+        var username = new URLSearchParams(window.location.search).get('username');
+        var websocket;
 
-        // Open WebSocket connection
-        websocket = new WebSocket("ws://localhost:8080/testServer");
+        // logs
+        console.log("Username: " + username);
 
-        websocket.onopen = function(event) {
-            $('#messages').append('<p>Connected as ' + username + '</p>');
-        };
+        // Update connection status
+        function setConnectionStatus(status) {
+            $('#connectionStatus').text(status);
+        }
 
-        websocket.onmessage = function(event) {
-            $('#messages').append('<p>' + event.data + '</p>');
-        };
+        // Initialize WebSocket connection
+        function connectWebSocket() {
+            websocket = new WebSocket('ws://localhost:8080/myApp/websocket'); // Update WebSocket URL based on your server
 
-        websocket.onclose = function(event) {
-            $('#messages').append('<p>Disconnected</p>');
-        };
+            websocket.onopen = function() {
+                setConnectionStatus("Connected as " + username);
+                websocket.send(username + " has joined the chat.");
+            };
 
+            websocket.onmessage = function(event) {
+                $('#chatWindow').append('<div>' + event.data + '</div>');
+            };
+
+            websocket.onclose = function() {
+                setConnectionStatus("Disconnected");
+            };
+
+            websocket.onerror = function() {
+                setConnectionStatus("Error in WebSocket connection");
+            };
+        }
+
+        // Send message
         $('#sendButton').click(function() {
             var message = $('#messageInput').val();
-            if (message && websocket.readyState === WebSocket.OPEN) {
+            if (message && websocket) {
                 websocket.send(username + ": " + message);
-                $('#messageInput').val(''); // Clear input after sending
+                $('#messageInput').val('');  // Clear input field
             }
         });
 
+        // Logout button to disconnect WebSocket
         $('#logoutButton').click(function() {
-            websocket.close(); // Close the WebSocket connection
-            window.location.href = 'login.html'; // Redirect to login page
+            if (websocket) {
+                websocket.send(username + " has left the chat.");
+                websocket.close();
+            }
+            window.location.href = '/myApp/index.jsp'; // Redirect to login page
         });
+
+        // Connect WebSocket when the page loads
+        connectWebSocket();
     });
 </script>
 </body>
