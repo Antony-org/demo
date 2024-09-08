@@ -62,7 +62,6 @@
             };
 
             websocket.onclose = function() {
-                websocket.send("LOGOUT");
                 setConnectionStatus("Disconnected");
             };
 

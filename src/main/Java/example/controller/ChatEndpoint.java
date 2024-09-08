@@ -30,7 +30,6 @@ public class ChatEndpoint {
     @OnMessage
     public void onMessage(String message, Session session) throws IOException {
         if (message.startsWith("USERNAME:")) {
-            // Extract and register the username
             String username = message.substring("USERNAME:".length());
             sessionUsernames.put(session, username);
             onlineUsernames.add(username);
@@ -38,7 +37,6 @@ public class ChatEndpoint {
             broadcast(username + " has joined the chat.");
         }
          else {
-            // Broadcast messages to all clients
             broadcast(message);
         }
     }
@@ -73,7 +71,6 @@ public class ChatEndpoint {
             onlineUsersMessage.append(username).append(",");
         }
         if (onlineUsersMessage.length() > 0) {
-            // Remove the trailing comma
             onlineUsersMessage.setLength(onlineUsersMessage.length() - 1);
         }
 
