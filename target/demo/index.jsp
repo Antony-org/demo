@@ -20,7 +20,7 @@
             event.preventDefault();
             var username = $('#username').val();
             if(username) {
-                window.location.href = 'jsp/chat.jsp?username=' + encodeURIComponent(username);
+                window.location.href = 'all/chatsse.jsp?username=' + encodeURIComponent(username);
             }
         });
     });

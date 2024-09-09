@@ -1,4 +1,4 @@
-example/controller/ChatEndpoint.class
 example/Main.class
+example/controller/SSEServlet.class
 example/utils/RandomNumberGenerator.class
 example/model/Users.class
